@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Phone Hunter</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header>
+        <h1 style="text-align: center;">Welcome to my phone hunter!</h1>
+    </header>
+    <main>
+        <section class="searchcontent">
+            <div class="mb-3 w-50">
+                <label for="exampleFormControlInput1" class="form-label">Search</label>
+                <input class="form-control" id="exampleFormControlInput1" placeholder="Search your phone">
+              </div>
+              <button id="searchbtn" class="text-primary">Search</button>
+        </section>
+        <section>
+            <div id="phone-container" class="row row-cols-1 row-cols-md-3 g-4">
+              </div>
+              <br><br><br>
+              <div id="search-result" class="d-none">
+                <h3 class="text-danger text-center">No Search Result Found</h3>
+              </div>
+              <div id="showall" class="text-center d-none">
+                <button id="showbtn" type="button" class="btn btn-primary">Show All</button>
+              </div>
+        </section>
+        <section id="spinner" class="d-none">
+          <div>
+            <div class="d-flex justify-content-center">
+              <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          </div>
+        </section>
+    </main>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="api.js"></script>
+  </body>
+</html>
