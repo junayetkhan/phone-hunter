@@ -85,4 +85,4 @@ getdetailsid.innerHTML = `
   : 'No mainFeatures'}</p>
 `;
 }
-loadphone('iphone')
+// loadphone('iphone')
