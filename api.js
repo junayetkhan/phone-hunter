@@ -10,7 +10,7 @@ const displayphone = (phones, datalimit) =>{
     
     
     if (datalimit && phones.length > 10) {
-      phones = phones.slice(0, 10);
+      phones = phones.slice(0, 5);
       const showbtn = document.getElementById('showall');
       showbtn.classList.remove('d-none')
     } else {
@@ -32,6 +32,7 @@ const displayphone = (phones, datalimit) =>{
             <h5 class="card-title"> ${phone.phone_name
             }</h5>
             <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <button onclick="loadshowdetails('${phone.slug}')" href="#" class="btn btn-primary">Show Details</button>
           </div>
         </div>
       </div>`;
@@ -45,6 +46,11 @@ const datainfo = (datalimit) =>{
   const getText = getsearch.value;
   loadphone(getText, datalimit);
 }
+document.getElementById('exampleFormControlInput1').addEventListener("keypress",function(e){
+  if (e.key === "Enter") {
+    datainfo(10);
+  }
+})
 document.getElementById('searchbtn').addEventListener("click",function(){
   datainfo(10);
 })
@@ -60,3 +66,10 @@ document.getElementById('showbtn').addEventListener("click",function(){
   datainfo();
 })
 
+const loadshowdetails = async(id)=>{
+  const url = `https://openapi.programming-hero.com/api/phone/${id}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  console.log(data.data);
+
+}
