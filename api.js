@@ -32,7 +32,9 @@ const displayphone = (phones, datalimit) =>{
             <h5 class="card-title"> ${phone.phone_name
             }</h5>
             <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <button onclick="loadshowdetails('${phone.slug}')" href="#" class="btn btn-primary">Show Details</button>
+            <button onclick="loadshowdetails('${phone.slug}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Show Phone Details
+          </button>
           </div>
         </div>
       </div>`;
@@ -42,11 +44,11 @@ const displayphone = (phones, datalimit) =>{
 }
 const datainfo = (datalimit) =>{
   loadspinner(true);
-  const getsearch = document.getElementById('exampleFormControlInput1');
+  const getsearch = document.getElementById('placeholderinput');
   const getText = getsearch.value;
   loadphone(getText, datalimit);
 }
-document.getElementById('exampleFormControlInput1').addEventListener("keypress",function(e){
+document.getElementById('placeholderinput').addEventListener("keypress",function(e){
   if (e.key === "Enter") {
     datainfo(10);
   }
@@ -70,6 +72,17 @@ const loadshowdetails = async(id)=>{
   const url = `https://openapi.programming-hero.com/api/phone/${id}`;
   const res = await fetch(url);
   const data = await res.json();
-  console.log(data.data);
-
+  displayphonedetails(data.data);
 }
+const displayphonedetails = phone =>{
+const getdetailsid = document.getElementById('detailsPhone');
+getdetailsid.innerText = phone.name;
+const getphonedate = document.getElementById('phone-date');
+getdetailsid.innerHTML = `
+<p>Phone Release Date: ${phone.releaseDate ? phone.releaseDate : 'No Release Found'}</p>
+<P>Other: ${phone.mainFeatures.memory
+  ? phone.mainFeatures.memory
+  : 'No mainFeatures'}</p>
+`;
+}
+loadphone('iphone')
